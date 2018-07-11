@@ -16,7 +16,7 @@ class App extends Component {
             <div className="App">
                 <Switch >
                     <Route exact path={`/${process.env.REACT_APP_PUBLIC_URL}`} component={Start} />
-                    <Route path={`/${process.env.REACT_APP_PUBLIC_URL}/board:boardId`} component={Board} />
+                    <Route path={`/${process.env.REACT_APP_PUBLIC_URL}/board/:boardId`} component={Board} />
                     <Route component={Start} />
                 </Switch>
                 
