@@ -6,7 +6,7 @@ firebase.initializeApp(FirebaseConfig);
 const databaseRef = firebase.database().ref();
 
 
-export const gamesRef = databaseRef.child("games"); //.orderByChild('order');
+export const boardsRef = databaseRef.child("boards"); //.orderByChild('order');
 
 
 export const authRef = firebase.auth();

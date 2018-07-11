@@ -1,0 +1,15 @@
+.board {
+    width: 150px;
+    margin: 0 auto;
+    
+}
+.cells {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 0px;
+}
+.cell {
+    border: 1px solid;
+    height: 50px;
+    width: 50px;
+}
