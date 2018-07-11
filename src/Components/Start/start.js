@@ -27,7 +27,7 @@ class Start extends Component {
         const { boards } = this.props;
         const boardsList = _.map(boards, (board, key) => {
             return (
-                <div key={key}>Board {key} -<Link to={`${process.env.REACT_APP_PUBLIC_URL}/board/${key}`}>view</Link> <span onClick={() => this.deleteBoard(key)}>delete</span></div>
+                <div key={key}>Board {key} -<Link to={`${process.env.REACT_APP_PUBLIC_URL}board/${key}`}>view</Link> <span onClick={() => this.deleteBoard(key)}>delete</span></div>
             )
         })
 
@@ -41,6 +41,7 @@ class Start extends Component {
                 <div className="boards">
                     { boardsList}
                     <p>PUBLIC_URL: {process.env.REACT_APP_PUBLIC_URL}</p>
+                    <p>{this.props.location.pathname}</p>
                 </div>
             )
         }

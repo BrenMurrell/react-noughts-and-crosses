@@ -7,6 +7,15 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Start from './Components/Start/start';
 import Board from './Components/Board/board';
 
+
+class Empty extends Component {
+  render() {
+    return(
+      <p>This path is wrong</p>
+    )
+  }
+}
+
 class App extends Component {
   render() {
     return (
@@ -15,9 +24,9 @@ class App extends Component {
         <BrowserRouter>
             <div className="App">
                 <Switch >
-                    <Route exact path={`/${process.env.REACT_APP_PUBLIC_URL}`} component={Start} />
-                    <Route path={`/${process.env.REACT_APP_PUBLIC_URL}/board/:boardId`} component={Board} />
-                    <Route component={Start} />
+                    <Route exact path={`${process.env.REACT_APP_PUBLIC_URL}`} component={Start} />
+                    <Route path={`${process.env.REACT_APP_PUBLIC_URL}board/:boardId`} component={Board} />
+                    <Route component={Empty} />
                 </Switch>
                 
             </div>
