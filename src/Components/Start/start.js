@@ -20,12 +20,15 @@ class Start extends Component {
         this.props.addBoard();
         event.preventDefault();
     }
-
+    deleteBoard = (boardId) => {
+        //alert(boardId);
+        this.props.deleteBoard(boardId);
+    }
     renderBoards() {
         const { boards } = this.props;
         const boardsList = _.map(boards, (board, key) => {
             return (
-                <div key={key}>Board {key} -<Link to={`/board/${key}`}>view</Link></div>
+                <div key={key}>Board {key} -<Link to={`/board/${key}`}>view</Link> <span onClick={() => this.deleteBoard(key)}>delete</span></div>
             )
         })
 
