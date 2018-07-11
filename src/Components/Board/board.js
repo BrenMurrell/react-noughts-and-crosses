@@ -57,7 +57,7 @@ class Board extends Component {
             || ((cells[0] === cells[3]) && (cells[0] === cells[6]) && (cells[0] !== ""))
             || ((cells[0] === cells[4]) && (cells[0] === cells[8]) && (cells[0] !== ""))
             || ((cells[1] === cells[4]) && (cells[1] === cells[7]) && (cells[1] !== ""))             
-            || ((cells[6] === cells[7]) && (cells[6] === cells[8]) && (cells[6] !== "")) 
+            || ((cells[3] === cells[4]) && (cells[3] === cells[5]) && (cells[3] !== "")) 
             || ((cells[2] === cells[5]) && (cells[2] === cells[8]) && (cells[2] !== "")) 
             || ((cells[2] === cells[4]) && (cells[2] === cells[6]) && (cells[2] !== "")) 
             || ((cells[6] === cells[7]) && (cells[6] === cells[8]) && (cells[6] !== ""))) {
@@ -108,7 +108,6 @@ class Board extends Component {
                 <h2>Game</h2>
                 <div className="board">
                     {this.renderCells()}
-                    {this.renderWin()}
                 </div>
                 <p>Next move: {this.state.nextPlay }</p>
                 <p><Link to="/">Back to boards</Link></p>

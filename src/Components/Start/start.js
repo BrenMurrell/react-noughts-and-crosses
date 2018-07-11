@@ -21,7 +21,6 @@ class Start extends Component {
         event.preventDefault();
     }
     deleteBoard = (boardId) => {
-        //alert(boardId);
         this.props.deleteBoard(boardId);
     }
     renderBoards() {
