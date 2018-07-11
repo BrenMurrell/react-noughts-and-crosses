@@ -110,7 +110,7 @@ class Board extends Component {
                     {this.renderCells()}
                 </div>
                 <p>Next move: {this.state.nextPlay }</p>
-                <p><Link to="/">Back to boards</Link></p>
+                <p><Link to={process.env.REACT_APP_PUBLIC_URL}>Back to boards</Link></p>
             
             </div>
         )
