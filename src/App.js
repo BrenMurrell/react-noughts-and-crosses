@@ -3,6 +3,8 @@ import './App.css';
 //import { connect } from "react-redux";
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { connect } from "react-redux";
+import { fetchUser } from "./actions/authActions";
 
 import Start from './Components/Start/start';
 import Board from './Components/Board/board';
@@ -36,4 +38,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { fetchUser })(App);

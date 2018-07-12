@@ -5,6 +5,9 @@ import _ from 'lodash';
 import './board.css';
 import { Link } from 'react-router-dom';
 
+import Join from './join';
+import Avatar from '../Generic/avatar';
+
 class Board extends Component {
     constructor(props) {
         super(props);
@@ -13,7 +16,8 @@ class Board extends Component {
             boardId: this.props.match.params.boardId,
             nextPlay: 'X',
             win: '',
-            canContinue: true
+            canContinue: true,
+            status: 'Waiting on players'
         }
     }
     componentWillMount() {
@@ -24,8 +28,15 @@ class Board extends Component {
          this.setState({
              nextPlay: nextProps.board.nextPlay
          });
+         if((nextProps.board.players.player1 !== '') && (nextProps.board.players.player2 !== '')) {
+            this.setState({
+                status: 'In progress'
+            })
+         } 
          if(nextProps.board.win) {
-            alert(lastPlay + ' won!!!');
+            this.setState({
+                status: nextProps.board.win + ' won!!!'
+            })
             this.setState({
                 canContinue: false
             });
@@ -53,22 +64,33 @@ class Board extends Component {
     
     checkWin(cells) {        
         if(typeof cells !== 'undefined') {
-            if(((cells[0] === cells[1]) && (cells[0] === cells[2]) && (cells[0] !== "")) 
-            || ((cells[0] === cells[3]) && (cells[0] === cells[6]) && (cells[0] !== ""))
-            || ((cells[0] === cells[4]) && (cells[0] === cells[8]) && (cells[0] !== ""))
-            || ((cells[1] === cells[4]) && (cells[1] === cells[7]) && (cells[1] !== ""))             
-            || ((cells[3] === cells[4]) && (cells[3] === cells[5]) && (cells[3] !== "")) 
-            || ((cells[2] === cells[5]) && (cells[2] === cells[8]) && (cells[2] !== "")) 
-            || ((cells[2] === cells[4]) && (cells[2] === cells[6]) && (cells[2] !== "")) 
-            || ((cells[6] === cells[7]) && (cells[6] === cells[8]) && (cells[6] !== ""))) {
-                return true;
-            } else {
+            if(((cells[0] === cells[1]) && (cells[0] === cells[2]) && (cells[0] === "X")) 
+            || ((cells[0] === cells[3]) && (cells[0] === cells[6]) && (cells[0] === "X"))
+            || ((cells[0] === cells[4]) && (cells[0] === cells[8]) && (cells[0] === "X"))
+            || ((cells[1] === cells[4]) && (cells[1] === cells[7]) && (cells[1] === "X"))             
+            || ((cells[3] === cells[4]) && (cells[3] === cells[5]) && (cells[3] === "X")) 
+            || ((cells[2] === cells[5]) && (cells[2] === cells[8]) && (cells[2] === "X")) 
+            || ((cells[2] === cells[4]) && (cells[2] === cells[6]) && (cells[2] === "X")) 
+            || ((cells[6] === cells[7]) && (cells[6] === cells[8]) && (cells[6] === "X"))) {
+                return "X";
+            } else if(((cells[0] === cells[1]) && (cells[0] === cells[2]) && (cells[0] === "O")) 
+            || ((cells[0] === cells[3]) && (cells[0] === cells[6]) && (cells[0] === "O"))
+            || ((cells[0] === cells[4]) && (cells[0] === cells[8]) && (cells[0] === "O"))
+            || ((cells[1] === cells[4]) && (cells[1] === cells[7]) && (cells[1] === "O"))             
+            || ((cells[3] === cells[4]) && (cells[3] === cells[5]) && (cells[3] === "O")) 
+            || ((cells[2] === cells[5]) && (cells[2] === cells[8]) && (cells[2] === "O")) 
+            || ((cells[2] === cells[4]) && (cells[2] === cells[6]) && (cells[2] === "O")) 
+            || ((cells[6] === cells[7]) && (cells[6] === cells[8]) && (cells[6] === "O"))) {
+                return "O";
+            }
+            
+            else {
                 return false;
             }
 
         }
     }
-
+    
     renderCells() {
         const { board } = this.props;
         const cellsList = _.map(board.cells, (cell, key) => {
@@ -102,7 +124,24 @@ class Board extends Component {
         )
      
     }
+
+    renderAvatar () {
+        //move this latere
+        const { auth } = this.props;
+        if(auth) {
+            return(
+                <Avatar imageUrl={auth.photoURL} altText={auth.displayName} />                   
+            ) 
+        }
+        return false;
+        
+    }
+
     render() {
+        const { board, auth } = this.props;
+        if(board === 'loading') {
+            return false;
+        }
         return (
             <div>
                 <h2>Game</h2>
@@ -110,15 +149,20 @@ class Board extends Component {
                     {this.renderCells()}
                 </div>
                 <p>Next move: {this.state.nextPlay }</p>
+                <p>Player 1: {board.players.player1}</p>
+                <p>Player 2: {board.players.player2}</p>
+                <p>{this.state.status}</p>
                 <p><Link to={process.env.REACT_APP_PUBLIC_URL}>Back to boards</Link></p>
-            
+                <Join board={this.props.board} boardId={this.state.boardId} />
+                {this.renderAvatar()}
+                
             </div>
         )
     }
 }
-const mapStateToProps = ({board}) => {
+const mapStateToProps = ({board, auth}) => {
     return {
-        board
+        board, auth
     };
 };
 
