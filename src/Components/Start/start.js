@@ -23,11 +23,20 @@ class Start extends Component {
     deleteBoard = (boardId) => {
         this.props.deleteBoard(boardId);
     }
+    renderDeleteButton(key) {
+        if(this.props.auth) {
+            return(
+                <button onClick={() => this.deleteBoard(key)}>delete</button>
+            )
+        }
+    }
     renderBoards() {
         const { boards } = this.props;
         const boardsList = _.map(boards, (board, key) => {
             return (
-                <div key={key}>Board {key} -<Link to={`${process.env.REACT_APP_PUBLIC_URL}board/${key}`}>view</Link> <span onClick={() => this.deleteBoard(key)}>delete</span></div>
+                <div key={key}>Board {key} -<Link to={`${process.env.REACT_APP_PUBLIC_URL}board/${key}`}>view</Link> 
+                    { this.renderDeleteButton(key) }
+                </div>
             )
         })
 
@@ -50,20 +59,28 @@ class Start extends Component {
         )
 
     }
+    renderAddButton() {
+        const { auth } = this.props;
+        if(auth) {
+            return(
+                <button onClick={this.addBoard.bind(this)}>Add a board</button>
 
+            )
+        }
+    }
     render() {
         return (
             <div>
                 { this.renderBoards() }
-                <button onClick={this.addBoard.bind(this)}>Add a board</button>
+                { this.renderAddButton() }
             </div>
         )
     }
 }
 
-const mapStateToProps = ({boards}) => {
+const mapStateToProps = ({boards, auth}) => {
     return {
-        boards
+        boards, auth
     };
 };
 

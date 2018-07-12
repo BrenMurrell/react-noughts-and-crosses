@@ -43,23 +43,31 @@ class Board extends Component {
          }
     }
     registerClick(key, boardId) {
+
         if(!this.state.canContinue) {
             alert('no new moves allowed');
             return false;
         }
+
+        
         var currentBoard = this.props.board;
         var currentCell = currentBoard.cells[key];
         
-        if(currentCell === '') {
-            currentBoard.cells[key] = this.state.nextPlay;
+        if((this.props.auth.uid === currentBoard.players.player1 && this.state.nextPlay === "X")
+            ||(this.props.auth.uid === currentBoard.players.player2 && this.state.nextPlay === "O")) {
+            if(currentCell === '') {
+                currentBoard.cells[key] = this.state.nextPlay;
+            } else {
+                alert('Eeeep. that one is full already');
+                return false;
+            }
+            var nextPlay = this.state.nextPlay === 'X' ? 'O' : 'X';
+            currentBoard.nextPlay = nextPlay;
+            currentBoard.win = this.checkWin(currentBoard.cells);
+            this.props.updateBoard(boardId, currentBoard)
         } else {
-            alert('eeeep. that one is full already');
-            return false;
+            alert('it\'s not your turn');
         }
-        var nextPlay = this.state.nextPlay === 'X' ? 'O' : 'X';
-        currentBoard.nextPlay = nextPlay;
-        currentBoard.win = this.checkWin(currentBoard.cells);
-        this.props.updateBoard(boardId, currentBoard)
     }
     
     checkWin(cells) {        
@@ -126,7 +134,7 @@ class Board extends Component {
     }
 
     renderAvatar () {
-        //move this latere
+        //move this later - doesn't belong in this component
         const { auth } = this.props;
         if(auth) {
             return(
