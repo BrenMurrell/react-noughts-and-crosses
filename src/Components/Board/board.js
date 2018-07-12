@@ -24,7 +24,6 @@ class Board extends Component {
         this.props.fetchBoard(this.state.boardId);
     }
     componentWillReceiveProps(nextProps) {
-        var lastPlay = this.state.nextPlay;
          this.setState({
              nextPlay: nextProps.board.nextPlay
          });
@@ -43,7 +42,9 @@ class Board extends Component {
          }
     }
     registerClick(key, boardId) {
-
+        if(!this.props.auth) {
+            return false; //not logged in
+        }
         if(!this.state.canContinue) {
             alert('no new moves allowed');
             return false;
@@ -146,7 +147,7 @@ class Board extends Component {
     }
 
     render() {
-        const { board, auth } = this.props;
+        const { board } = this.props;
         if(board === 'loading') {
             return false;
         }

@@ -4,14 +4,8 @@ import { signIn, signOut, fetchUser } from "../../actions/authActions";
 import { updateBoard } from '../../actions/boardActions';
 import { google, facebook, twitter } from "../../config/firebase";
 import Button from '../Generic/button';
-import Avatar from '../Generic/avatar';
-import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 class Join extends Component {
-    constructor(props) {
-        super(props);
-        
-    }
     componentWillMount() {
         this.props.fetchUser(); //don't use auth - use user actions
     }
