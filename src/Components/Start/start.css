@@ -1,0 +1,46 @@
+.start__boards {
+    display: grid;
+    max-width: 600px;
+    grid-gap: 20px;
+    margin: 0 auto;
+}
+@media all and (min-width: 670px) {
+    .start__boards {
+        grid-template-columns: 50% 50%;
+    }
+
+}
+.start__board {
+    border: 2px solid #222;
+    border-radius: 5px;
+    background: white;    
+}
+.start-board__wrapper {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 20px 0;
+}
+.start-board__wrapper p,
+.start-board__wrapper h3 { 
+    display: none; 
+}
+.start-board__wrapper .avatar {
+    height: 60px;
+    width: 60px;
+}
+.start-board {
+    display: grid;
+    width: 60px;
+    margin: 0 auto;
+    grid-template-columns: auto auto auto;
+    grid-gap: 2px;
+
+}
+.start-board__cell {
+    background: #222;
+    color: #fff;
+    font-size: 12px;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+}

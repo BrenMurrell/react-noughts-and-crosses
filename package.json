@@ -2,7 +2,7 @@
   "name": "react-noughts-and-crosses",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://brenmurrell.github.io/react-noughts-and-crosses/",
+  "homepage": "http://noughts.moon.co.nz",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
     "@fortawesome/free-brands-svg-icons": "^5.1.0-11",

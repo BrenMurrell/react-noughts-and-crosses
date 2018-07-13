@@ -1,3 +1,7 @@
+html {
+  background-color: #eee;
+  padding: 0 16px 32px;
+}
 .App {
   text-align: center;
 }

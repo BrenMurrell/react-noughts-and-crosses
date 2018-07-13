@@ -37,7 +37,6 @@ class Join extends Component {
                             clickHandler={() => this.joinGame(auth.uid)}
                             label="Join"
                         />
-                        
                     </div>
                 )
             } else {
