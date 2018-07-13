@@ -22,7 +22,6 @@ class Join extends Component {
 
     renderJoinControls() {
         const { auth, board } = this.props;
-        console.log(board.players.player1, board.players.player2, board);
         if(auth) { 
             if(board.players.player1 === auth.uid) {
                 return(
@@ -47,21 +46,7 @@ class Join extends Component {
         } 
         return(
             <div>
-                <h1>Sign in to join</h1>  
-                <Button                        
-                    clickHandler={() => this.props.signIn(google)}
-                    label="Sign in with Google"
-                />
-                <Button                        
-                    clickHandler={() => this.props.signIn(facebook)}
-                    label="Sign in with Facebook"
-                />
-                <Button                        
-                    clickHandler={() => this.props.signIn(twitter)}
-                    label="Sign in with Twitter"
-                />               
-                
-                
+                <h1>Sign in to join</h1>           
             </div>
         )
     }
@@ -73,10 +58,6 @@ class Join extends Component {
         return (
             <div className="player">
                 { this.renderJoinControls() }
-                <Button                        
-                    clickHandler={this.props.signOut}
-                    label="Sign out"
-                />
             </div>
         )
     }

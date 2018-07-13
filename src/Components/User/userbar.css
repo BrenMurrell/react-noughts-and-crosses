@@ -1,0 +1,10 @@
+.userbar {
+    position: fixed;
+    background: #222;
+    color: white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding: 5px;
+}

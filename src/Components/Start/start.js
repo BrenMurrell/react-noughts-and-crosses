@@ -48,7 +48,7 @@ class Start extends Component {
         const boardsList = _.map(boards, (board, key) => {
             return (
                 <div className="start__board" key={key}>Board -<Link to={`${process.env.REACT_APP_PUBLIC_URL}board/${key}`}>view</Link> 
-                    { this.renderDeleteButton(key, board) }
+                    {/* { this.renderDeleteButton(key, board) } */}
                     - { this.renderStatus(board) }
                     <StartBoard board={board} />
                 </div>

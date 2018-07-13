@@ -28,7 +28,7 @@ class Board extends Component {
          this.setState({
              nextPlay: nextProps.board.nextPlay
          });
-         if((nextProps.board.players.player1 !== '') && (nextProps.board.players.player2 !== '')) {
+         if(nextProps.board.players && (nextProps.board.players.player1 !== '') && (nextProps.board.players.player2 !== '')) {
             this.setState({
                 status: 'In progress'
             })
@@ -135,17 +135,7 @@ class Board extends Component {
      
     }
 
-    renderAvatar () {
-        //move this later - doesn't belong in this component
-        const { auth } = this.props;
-        if(auth) {
-            return(
-                <Avatar imageUrl={auth.photoURL} altText={auth.displayName} />                   
-            ) 
-        }
-        return false;
-        
-    }
+    
 
     renderPlayer1() {
         const { board } = this.props;
@@ -188,8 +178,6 @@ class Board extends Component {
                 <p>{this.state.status}</p>
                 <p><Link to={process.env.REACT_APP_PUBLIC_URL}>Back to boards</Link></p>
                 <Join board={this.props.board} boardId={this.state.boardId} />
-                {this.renderAvatar()}
-                
             </div>
         )
     }
