@@ -147,6 +147,25 @@ class Board extends Component {
         
     }
 
+    renderPlayer1() {
+        const { board } = this.props;
+        if(board.players.player1) {
+            return (
+                <Player userId={board.players.player1} playingAs="X" />                
+            )
+        }
+        return <p>Join now</p>
+    }
+    renderPlayer2() {
+        const { board } = this.props;
+        if(board.players.player2) {
+            return (
+                <Player userId={board.players.player2} playingAs="O" />                
+            )
+        }
+        return <p>Join now</p>
+    }
+
     render() {
         const { board } = this.props;
         if(board === 'loading') {
@@ -160,9 +179,10 @@ class Board extends Component {
                 </div>
                 <p>Next move: {this.state.nextPlay }</p>
                 <div className="board__players">
-                    <Player userId={board.players.player1} playingAs="X" />
+                    { this.renderPlayer1() }
                     <div className="board__vs"><p>vs</p></div>
-                    <Player userId={board.players.player2} playingAs="O" />
+                    { this.renderPlayer2() }
+                    
                 </div>
 
                 <p>{this.state.status}</p>
