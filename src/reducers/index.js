@@ -7,5 +7,5 @@ import boards from './boardsReducer';
 import auth from './authReducer';
 
 export default combineReducers({
- auth, boards, board
+    auth, boards, board
 });

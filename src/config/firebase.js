@@ -7,7 +7,7 @@ const databaseRef = firebase.database().ref();
 
 
 export const boardsRef = databaseRef.child("boards"); //.orderByChild('order');
-export const userRef = databaseRef.child("users"); //.orderByChild('order');
+export const playersRef = databaseRef.child("users"); //.orderByChild('order');
 
 
 export const authRef = firebase.auth();

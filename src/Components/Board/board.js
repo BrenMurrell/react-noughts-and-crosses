@@ -6,6 +6,7 @@ import './board.css';
 import { Link } from 'react-router-dom';
 
 import Join from './join';
+import Player from '../User/Player';
 import Avatar from '../Generic/avatar';
 
 class Board extends Component {
@@ -158,8 +159,12 @@ class Board extends Component {
                     {this.renderCells()}
                 </div>
                 <p>Next move: {this.state.nextPlay }</p>
-                <p>Player 1: {board.players.player1}</p>
-                <p>Player 2: {board.players.player2}</p>
+                <div className="board__players">
+                    <Player userId={board.players.player1} playingAs="X" />
+                    <div className="board__vs"><p>vs</p></div>
+                    <Player userId={board.players.player2} playingAs="O" />
+                </div>
+
                 <p>{this.state.status}</p>
                 <p><Link to={process.env.REACT_APP_PUBLIC_URL}>Back to boards</Link></p>
                 <Join board={this.props.board} boardId={this.state.boardId} />

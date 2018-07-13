@@ -17,3 +17,17 @@
     background: #222;
     color: #fff;
 }
+
+.board__players {
+    max-width: 300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+}
+.board__vs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 32px;
+}

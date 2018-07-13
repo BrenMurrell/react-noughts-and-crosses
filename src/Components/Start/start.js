@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as actions from "../../actions/boardActions";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import '../Board/board.css';
 import _ from 'lodash';
 
 class Start extends Component {
@@ -33,13 +33,14 @@ class Start extends Component {
     renderBoards() {
         const { boards } = this.props;
         const boardsList = _.map(boards, (board, key) => {
+            console.log('board', board);
             return (
                 <div key={key}>Board {key} -<Link to={`${process.env.REACT_APP_PUBLIC_URL}board/${key}`}>view</Link> 
                     { this.renderDeleteButton(key) }
                 </div>
             )
         })
-
+        
         if(boards === 'loading') {
             return(
                 <p>Loading boards...</p>
@@ -49,8 +50,6 @@ class Start extends Component {
             return (
                 <div className="boards">
                     { boardsList}
-                    <p>PUBLIC_URL: {process.env.REACT_APP_PUBLIC_URL}</p>
-                    <p>{this.props.location.pathname}</p>
                 </div>
             )
         }

@@ -1,4 +1,4 @@
-import { authRef, userRef } from "../config/firebase";
+import { authRef, playersRef } from "../config/firebase";
 import { FETCH_USER } from "./types";
 
 export const fetchUser = () => dispatch => {
@@ -28,7 +28,7 @@ export const fetchUser = () => dispatch => {
               displayName: result.user.displayName,
               photoURL: result.user.photoURL
           }
-          userRef.child(result.user.uid).set(newUser);
+          playersRef.child(result.user.uid).set(newUser);
       })
       .catch(error => {
         console.log(error);
