@@ -1,0 +1,33 @@
+.board {
+    width: 150px;
+    margin: 0 auto;
+    
+}
+.cells {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 0px;
+}
+.cell {
+    border: 1px solid;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #222;
+    color: #fff;
+}
+
+.board__players {
+    max-width: 300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+}
+.board__vs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 32px;
+}
