@@ -6,10 +6,6 @@ import { google, facebook, twitter } from "../../config/firebase";
 import Button from '../Generic/button';
 
 class Join extends Component {
-    componentWillMount() {
-        this.props.fetchUser(); //don't use auth - use user actions
-    }
-    
     joinGame(playerId) {
         var currentBoard = this.props.board;
         if(currentBoard.players.player1) {

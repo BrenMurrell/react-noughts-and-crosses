@@ -6,9 +6,6 @@ import { google, facebook, twitter } from "../../config/firebase";
 import './userbar.css';
 
 class UserBar extends Component {
-    // componentWillMount = () => {
-    //     this.props.fetchUser();
-    // }
     constructor() {
         super();
         this.state = ({
